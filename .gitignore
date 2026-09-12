@@ -1,1 +1,3 @@
 vendor/plenary.nvim
+# the global gitignore on some machines excludes any go/ directory
+!after/queries/go/
