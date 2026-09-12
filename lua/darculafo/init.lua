@@ -4,6 +4,12 @@ local defaults = {
 	-- When false every @lsp.* group is made transparent, so semantic tokens add no
 	-- colour and treesitter decides everything.
 	semantic_tokens = true,
+	-- Deliberate departures from Darcula, all off by default.
+	extras = {
+		purple_fields = false, -- struct fields / properties in constant purple (Java-style)
+		purple_builtin_constants = false, -- true false nil iota purple instead of keyword orange
+		purple_labels = false, -- labels purple instead of plain bold-underline
+	},
 	integrations = {
 		blink = true,
 		nvim_cmp = true, -- CmpItem* aliases (used by blink when use_nvim_cmp_as_default is on)

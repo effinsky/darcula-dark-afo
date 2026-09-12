@@ -20,6 +20,11 @@ vim.pack.add { "https://github.com/effinsky/darculafo" }
 ```lua
 require("darculafo").setup {
 	semantic_tokens = true, -- false: LSP tokens add no colour, treesitter decides everything
+	extras = { -- deliberate departures from Darcula, all off by default
+		purple_fields = false, -- struct fields / properties in constant purple
+		purple_builtin_constants = false, -- true false nil iota purple instead of orange
+		purple_labels = false,
+	},
 	integrations = {
 		blink = true,
 		nvim_cmp = true,

@@ -231,6 +231,21 @@ return function(p, cfg)
 		["@label.yaml"] = { fg = p.yaml_anchor },
 	}
 
+	-- opt-in departures from Darcula --------------------------------------------------------
+	local x = cfg.extras or {}
+	if x.purple_fields then
+		g["@variable.member"] = { fg = p.constant }
+		g["@property"] = { fg = p.constant }
+	end
+	if x.purple_builtin_constants then
+		g["@boolean"] = { fg = p.constant }
+		g["@constant.builtin"] = { fg = p.constant }
+		g["Boolean"] = { fg = p.constant }
+	end
+	if x.purple_labels then
+		g["@label"] = { fg = p.constant, bold = true, underline = true, sp = p.comment }
+	end
+
 	-- diff captures and misc -------------------------------------------------------------------------------
 	add {
 		["@diff.plus"] = { link = "Added" },
@@ -312,7 +327,9 @@ return function(p, cfg)
 			["@lsp.typemod.function.defaultLibrary.go"] = { fg = p.builtin_go },
 			["@lsp.typemod.type.defaultLibrary.go"] = { fg = p.builtin_go },
 			["@lsp.typemod.type.definition.go"] = { fg = p.fg },
-			["@lsp.typemod.variable.defaultLibrary.go"] = { fg = p.builtin_go },
+			["@lsp.typemod.variable.defaultLibrary.go"] = {
+				fg = x.purple_builtin_constants and p.constant or p.builtin_go,
+			},
 			["@lsp.typemod.string.format.go"] = { fg = p.escape },
 		}
 		-- Constants are purple italic through @lsp.mod.readonly (priority 126) instead of

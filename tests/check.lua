@@ -169,6 +169,28 @@ end
 expect("@lsp.typemod.variable.readonly", { fg = false, bg = false, italic = false })
 expect("@lsp.typemod.variable.readonly.go", { fg = false, bg = false, italic = false })
 
+-- extras are off by default and flip only what they name -----------------------------------
+expect("@variable.member", { fg = p.fg })
+require("darculafo").setup {
+	extras = {
+		purple_fields = true,
+		purple_builtin_constants = true,
+		purple_labels = true,
+	},
+}
+expect("@variable.member", { fg = p.constant, italic = false })
+expect("@property", { fg = p.constant })
+expect("@property.yaml", { fg = p.keyword })
+expect("@function.method.call.go", { fg = p.func_call_go })
+expect("@boolean", { fg = p.constant })
+expect("@constant.builtin", { fg = p.constant })
+expect("@lsp.typemod.variable.defaultLibrary.go", { fg = p.constant })
+expect("@label", { fg = p.constant, bold = true, underline = true })
+expect("BlinkCmpKindField", { fg = p.constant })
+require("darculafo").setup {}
+expect("@variable.member", { fg = p.fg })
+expect("@boolean", { fg = p.keyword })
+
 -- terminal -----------------------------------------------------------------------------------
 checks = checks + 1
 if vim.g.terminal_color_1 ~= p.ansi.red or vim.g.terminal_color_4 ~= p.ansi.blue then
